@@ -29,3 +29,14 @@ func NamespaceCreate(c *gin.Context) {
 		"name": namespace,
 	})
 }
+
+func NamespaceList(c *gin.Context) {
+	// Get all namespaces
+	var namespaces []models.Namespace
+	initializers.DB.Find(&namespaces)
+
+	// response
+	c.JSON(200, gin.H{
+		"namespaces": namespaces,
+	})
+}
