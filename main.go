@@ -14,6 +14,7 @@ func init() {
 func main() {
 	r := gin.Default()
 
+	r.GET("/namespaces", controllers.NamespaceList)
 	r.POST("/namespaces", controllers.NamespaceCreate)
 
 	r.Run()
