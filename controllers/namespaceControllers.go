@@ -59,3 +59,16 @@ func NamespaceById(c *gin.Context) {
 		"namespace": namespace,
 	})
 }
+
+func NamespaceDelete(c *gin.Context) {
+	// Get ID off url
+	id := c.Param("id")
+
+	// Delete the post
+	initializers.DB.Delete(&models.Namespace{}, id)
+
+	// respond
+	c.JSON(http.StatusOK, gin.H{
+		"status": "deleted namespace",
+	})
+}
