@@ -11,10 +11,13 @@ import (
 func NamespaceCreate(c *gin.Context) {
 	// Get data off request body
 	var body struct {
-		Name string `json:"name"`
+		Name string `json:"name" binding:"required"`
 	}
 
-	c.ShouldBindJSON(&body)
+	if err := c.ShouldBindJSON(&body); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
 
 	// create the namespace
 	namespace := models.Namespace{Name: body.Name}
