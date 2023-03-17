@@ -45,3 +45,17 @@ func NamespaceList(c *gin.Context) {
 		"namespaces": namespaces,
 	})
 }
+
+func NamespaceById(c *gin.Context) {
+	// Get ID off url
+	id := c.Param("id")
+
+	// Get the post
+	var namespace models.Namespace
+	initializers.DB.First(&namespace, id)
+
+	// repond
+	c.JSON(http.StatusOK, gin.H{
+		"namespace": namespace,
+	})
+}
