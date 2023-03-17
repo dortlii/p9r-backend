@@ -4,6 +4,7 @@
 *.dll
 *.so
 *.dylib
+p9r-backend
 
 # Test binary, built with `go test -c`
 *.test
