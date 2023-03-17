@@ -17,5 +17,5 @@ func main() {
 	r.GET("/namespaces", controllers.NamespaceList)
 	r.POST("/namespaces", controllers.NamespaceCreate)
 
-	r.Run()
+	r.Run("localhost:3000")
 }
