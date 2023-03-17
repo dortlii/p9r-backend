@@ -14,7 +14,7 @@ func NamespaceCreate(c *gin.Context) {
 		Name string `json:"name" binding:"required"`
 	}
 
-	// validate that name param is existing
+	// validate that name param is existing and not empty
 	if err := c.ShouldBindJSON(&body); err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
