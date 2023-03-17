@@ -15,6 +15,8 @@ func main() {
 	r := gin.Default()
 
 	r.GET("/namespaces", controllers.NamespaceList)
+	r.GET("/namespaces/:id", controllers.NamespaceById)
+
 	r.POST("/namespaces", controllers.NamespaceCreate)
 
 	r.Run("localhost:3000")
