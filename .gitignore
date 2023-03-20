@@ -17,3 +17,6 @@ p9r-backend
 
 # env files
 .env
+
+# IDE settings
+.idea

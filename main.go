@@ -11,15 +11,21 @@ func init() {
 	initializers.ConnectToDb()
 }
 
+func setupRouter() *gin.Engine {
+	router := gin.Default()
+
+	router.GET("/namespaces", controllers.NamespaceList)
+	router.GET("/namespaces/:id", controllers.NamespaceById)
+
+	router.POST("/namespaces/create", controllers.NamespaceCreate)
+
+	router.DELETE("/namespaces/delete/:id", controllers.NamespaceDelete)
+
+	return router
+}
+
 func main() {
-	r := gin.Default()
-
-	r.GET("/namespaces", controllers.NamespaceList)
-	r.GET("/namespaces/:id", controllers.NamespaceById)
-
-	r.POST("/namespaces/create", controllers.NamespaceCreate)
-
-	r.DELETE("/namespaces/delete/:id", controllers.NamespaceDelete)
+	r := setupRouter()
 
 	r.Run("localhost:3000")
 }
