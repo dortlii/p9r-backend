@@ -5,9 +5,9 @@ name: Build p9r-backend
 
 on:
   push:
-    branches: [ "feature/cicd/add_cicd_pipeline" ]
+    branches: [ "develop", "main" ]
   pull_request:
-    branches: [ "feature/cicd/add_cicd_pipeline" ]
+    branches: [ "develop", "main" ]
 
 jobs:
 
