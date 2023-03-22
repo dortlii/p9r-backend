@@ -3,12 +3,13 @@ package main
 import (
 	"bytes"
 	"encoding/json"
-	"github.com/dortlii/p9r-backend/controllers"
-	"github.com/dortlii/p9r-backend/models"
-	"github.com/gin-gonic/gin"
 	"net/http"
 	"net/http/httptest"
 	"testing"
+
+	"github.com/dortlii/p9r-backend/controllers"
+	"github.com/dortlii/p9r-backend/models"
+	"github.com/gin-gonic/gin"
 
 	"github.com/stretchr/testify/assert"
 )
@@ -31,4 +32,18 @@ func TestNamespaceCreate(t *testing.T) {
 
 	router.ServeHTTP(w, req)
 	assert.Equal(t, http.StatusOK, w.Code)
+}
+
+func TestNamespaceList(t *testing.T) {
+	router := setupRouter()
+	router.GET("/namespaces", controllers.NamespaceList)
+	req, _ := http.NewRequest("GET", "/namespaces", nil)
+	w := httptest.NewRecorder()
+	router.ServeHTTP(w, req)
+
+	var namespaces []models.Namespace
+	json.Unmarshal(w.Body.Bytes(), &namespaces)
+
+	assert.Equal(t, http.StatusOK, w.Code)
+	assert.NotEmpty(t, namespaces)
 }
